@@ -6,6 +6,9 @@ const nextConfig = {
     CLIENT_SECRET: process.env.CLIENT_SECRET,
   },
   swcMinify: true,
+  images: {
+    domains:  ["i.scdn.co"]
+  }
 }
 
 module.exports = nextConfig
