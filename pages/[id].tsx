@@ -4,27 +4,28 @@ import AlbumDetail from "../components/AlbumDetail/AlbumDetail";
 // config
 import { API_URL, API_TOKEN, TOKEN_URL } from "../config";
 import Header from "../components/Header/Header";
+// Types
+import type { Album } from "../api/types";
+import { basicFetch } from "../api/fetchFunctions";
+import { GetStaticPaths, GetStaticProps } from "next";
 
 type Props = {
-  tracks: any;
-  imgUrl: string;
+  album: Album;
   accesToken: string;
 };
 
-const Album = ({ imgUrl, tracks }: Props) => {
-
-  return (
-    <main>
-      <Header />
-      <AlbumDetail albumTracks={tracks} />
-    </main>
-  );
-};
+const Album = ({ album }: Props) => (
+  <main>
+    <Header />
+    <AlbumDetail albumTracks={album} />
+  </main>
+);
 
 export default Album;
 
-export async function getServerSideProps({ params: { id } }) {
-  // API Access Token
+export const getStaticProps: GetStaticProps = async (context) => {
+  const id = context.params?.id as string;
+
   let authParameters = {
     method: "POST",
     headers: {
@@ -44,12 +45,18 @@ export async function getServerSideProps({ params: { id } }) {
     },
   };
 
-  const tracksEndpoint = `${API_URL}/v1/albums/${id}/`;
-  const answer = await fetch(tracksEndpoint, searchParameters);
-  const tracks = await answer.json();
+  const albumEndpoint = `${API_URL}/v1/albums/${id}/`;
+  const album = await basicFetch<Album>(albumEndpoint, searchParameters);
+
   return {
     props: {
-      tracks,
+      album,
     },
   };
-}
+};
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [],
+    fallback: "blocking",
+  };
+};
