@@ -1,5 +1,8 @@
 import type { NextPage } from 'next'
+import Link from 'next/link';
 import { ChangeEvent, useEffect, useState } from 'react';
+import Card from '../components/Card/Card';
+import Grid from '../components/Grid/Grid';
 import { TOKEN_URL, API_TOKEN } from '../config';
 
 
@@ -51,11 +54,27 @@ const Home: NextPage = () => {
         })
     }
   return (
-    <div>
+    <div className='bg-black'>
       <form onSubmit={handleSubmit}>
         <input  onChange={handleChange} />
         <button onClick={search}>search</button>
+        <Grid
+          className='p-4 max-w-7xl m-auto'
+          title='Albums'
+        >
+          {albums.map((album) => (
+            <Link key={album.id} href={`/${album.id}`}>
+              <div>
+                <Card
+                  imgUrl={album.images[0].url}
+                  title={album.name}
+                />
+              </div>
+            </Link>
+          ))}
+        </Grid>
       </form>
+      
     </div>
   )
 }
