@@ -3,12 +3,19 @@ import Link from 'next/link';
 import { ChangeEvent, useEffect, useState } from 'react';
 import Card from '../components/Card/Card';
 import Grid from '../components/Grid/Grid';
+import Header from '../components/Header/Header';
+import SearchInput from '../components/SearchInput/SearchInput';
 import { TOKEN_URL, API_TOKEN } from '../config';
 
 
 const Home: NextPage = () => {
+
+  const [query, setQuery] = useState([]);
+
   const [searchInput, setSearchInput] = useState('')
   const [accesToken, setAccesToken] = useState('');
+
+
   const [albums, setAlbums] = useState([])
   const handleChange = ({target}: ChangeEvent<HTMLInputElement>) => {
     setSearchInput(target.value)
@@ -31,38 +38,16 @@ const Home: NextPage = () => {
     .then(data => setAccesToken(data.access_token))
   }, [])
 
-  // Search
-  async function search()  {
 
-    // Get request using search to get the Artist  ID
-    let searchParameters = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${accesToken}`  
-      }
-    }
-    let artistID = await fetch(`https://api.spotify.com/v1/search?q=${searchInput}&type=artist`, searchParameters)
-      .then(response => response.json())
-      .then(data => { return data.artists.items[0].id })
-
-      // Get request with Artist ID grab all the albums from that artist
-      let returnAlbums = await fetch(`https://api.spotify.com/v1/artists/${artistID}/albums?include_groups=album&market=US&limi=50`, searchParameters)
-        .then(response => response.json())
-        .then(data => {
-          setAlbums(data.items)
-        })
-    }
   return (
-    <div className='bg-black'>
-      <form onSubmit={handleSubmit}>
-        <input  onChange={handleChange} />
-        <button onClick={search}>search</button>
+    <>
+      <Header />
         <Grid
           className='p-4 max-w-7xl m-auto'
           title='Albums'
         >
-          {albums.map((album) => (
+          {query 
+          ?  query.map((album) => (
             <Link key={album.id} href={`/${album.id}`}>
               <div>
                 <Card
@@ -71,11 +56,10 @@ const Home: NextPage = () => {
                 />
               </div>
             </Link>
-          ))}
+          )): <SearchInput accesToken={accesToken} setQuery={setQuery} />}
         </Grid>
-      </form>
       
-    </div>
+    </>
   )
 }
 
