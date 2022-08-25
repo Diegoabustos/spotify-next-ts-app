@@ -3,6 +3,7 @@ import Image from "next/image";
 import AlbumDetail from "../components/AlbumDetail/AlbumDetail";
 // config
 import { API_URL, API_TOKEN, TOKEN_URL } from "../config";
+import Header from "../components/Header/Header";
 
 type Props = {
   tracks: any;
@@ -14,6 +15,7 @@ const Album = ({ imgUrl, tracks }: Props) => {
 
   return (
     <main>
+      <Header />
       <AlbumDetail albumTracks={tracks} />
     </main>
   );

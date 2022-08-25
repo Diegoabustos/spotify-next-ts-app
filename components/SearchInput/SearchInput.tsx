@@ -47,9 +47,8 @@ const SearchInput = ({ setQuery, accesToken }: SearchInputProps) => {
 
 
   return (
-    <main className="flex h-screen w-screen items-center justify-center bg-gray-900">
       <form onSubmit={handleSubmit}>
-        <div className="flex w-96 rounded bg-white">
+        <div className="flex w-96 rounded-xl bg-white">
           <input
             className="w-full border-none bg-transparent px-4 py-1 text-gray-900 outline-none"
             id="search"
@@ -66,7 +65,6 @@ const SearchInput = ({ setQuery, accesToken }: SearchInputProps) => {
           </button>
         </div>
       </form>
-    </main>
   );
 };
 

@@ -11,19 +11,9 @@ import { TOKEN_URL, API_TOKEN } from '../config';
 const Home: NextPage = () => {
 
   const [query, setQuery] = useState([]);
-
-  const [searchInput, setSearchInput] = useState('')
   const [accesToken, setAccesToken] = useState('');
 
 
-  const [albums, setAlbums] = useState([])
-  const handleChange = ({target}: ChangeEvent<HTMLInputElement>) => {
-    setSearchInput(target.value)
-  }
-  const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
-    // 👇️ prevent page refresh
-    event.preventDefault();
-  };
   useEffect(() => {
     // API Access Token
     let authParameters = {
@@ -40,13 +30,17 @@ const Home: NextPage = () => {
 
 
   return (
-    <>
+    <main className='h-screen w-screen bg-gray-900 overflow-y-scroll'>
       <Header />
+      <div className='flex items-center justify-center mt-9 pt-10'>
+        <SearchInput accesToken={accesToken} setQuery={setQuery} />   
+
+      </div>
         <Grid
           className='p-4 max-w-7xl m-auto'
           title='Albums'
         >
-          {query 
+          {query.length > 0
           ?  query.map((album) => (
             <Link key={album.id} href={`/${album.id}`}>
               <div>
@@ -56,10 +50,9 @@ const Home: NextPage = () => {
                 />
               </div>
             </Link>
-          )): <SearchInput accesToken={accesToken} setQuery={setQuery} />}
+          )): null}
         </Grid>
-      
-    </>
+    </main>
   )
 }
 
