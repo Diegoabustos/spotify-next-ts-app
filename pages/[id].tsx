@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import Image from "next/image";
+// Components
 import AlbumDetail from "../components/AlbumDetail/AlbumDetail";
+import Breadcrumb from "../components/Breadcrumb/Breadcrumb";
+import Header from "../components/Header/Header";
 // config
 import { API_URL, API_TOKEN, TOKEN_URL } from "../config";
-import Header from "../components/Header/Header";
 // Types
-import type { Album } from "../api/types";
-import { basicFetch } from "../api/fetchFunctions";
 import { GetStaticPaths, GetStaticProps } from "next";
-import Breadcrumb from "../components/Breadcrumb/Breadcrumb";
+import type { Album } from "../api/types";
+// Functions
+import { basicFetch } from "../api/fetchFunctions";
 
 type AlbumProps = {
   album: Album;

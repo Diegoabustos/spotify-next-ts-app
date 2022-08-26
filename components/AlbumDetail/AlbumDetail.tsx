@@ -1,6 +1,8 @@
 import Image from "next/image";
-import { Tracks } from "../../api/types";
+// Helpers
 import { calcTime } from "../../helpers";
+// Types
+import { Tracks } from "../../api/types";
 
 type AlbumDetailProps = {
   name: string;
@@ -20,12 +22,12 @@ const AlbumDetail = ({
   totalTracks,
 }: AlbumDetailProps) => {
   return (
-    <div className="bg-black h-full">
-      <div className="flex">
+    <div className="bg-black h-auto">
+      <div className="flex-col flex md:flex-row">
         <div className="mx-6 my-6">
-          <Image width="200" height="200" alt="album" src={albumImageUrl} />
+          <Image width="200" height="200" alt="album-artistID" src={albumImageUrl} />
         </div>
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col justify-center px-4">
           <h4 className="text-gray-500 tracking-widest text-sm">Abum Detail</h4>
           <h1 className="text-white text-4xl mb-2">{name}</h1>
           <p className="text-gray-600 text-sm mb-2">{label}</p>

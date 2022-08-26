@@ -7,6 +7,7 @@ import Grid from "../components/Grid/Grid";
 import Header from "../components/Header/Header";
 // Config
 import { TOKEN_URL, API_TOKEN, API_URL } from "../config";
+// Types
 import { Album } from "../api/types";
 
 
