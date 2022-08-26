@@ -1,35 +1,65 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Spotify Searcher App - Proyecto hecho en NextJS
 
-## Getting Started
 
-First, run the development server:
+__
 
-```bash
-npm run dev
-# or
-yarn dev
+## Comenzando 🚀
+
+_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
+
+
+### Pre-requisitos 📋
+
+_Herramientas necesarias para instalar el software y como instalarlas_
+
+```
+version node 14.0.0 en adelante y npm version 6 en adelante
+```
+_Recomendado tener última versión de yarn instalada ya que fue el manejador de dependencias locales usado para esté proyecto._
+
+### Instalación 🔧
+_Hacer clone de esté repositiorio._
+
+
+_Instalación de dependencias mediante los siguientes comandos ubicado en la carpeta raíz del proyecto._
+
+```
+yarn o npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Configuración
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+_El proyecto utiliza la API REST de Spotify https://developer.spotify.com/documentation/web-api/reference/#/  por lo que hay que utilizar un par de parametros: El client ID y el client Secret . Dichos valores son proporcionados al crearse una cuenta mediante la siguiente url: https://developer.spotify.com/dashboard/. Una vez teniendo los valores de client ID y client Secret debe crearse el archivo:_
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+```
+.env.local
+```
+_Tomar de referencia el archivo:_
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```
+.env.example
+```
+_Y asignarle el client ID u el client Secret a las variables ubicadas en esté archivo_
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+### Compilación
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+_Ejecutando cualquiera de los siguientes comandos ubicandose en la raíz del proyecto:_
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+yarn dev o npm run dev
+```
+_El proyecto correra en el puerto 3000 (definido por defecto) por lo que hay que dirigirse ala url del navegador el http://localhost:3000/_
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Construido con 🛠️
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# spotify-next-ts-app
+_NextJs - Tailwindcss - typescript_
+
+* [yarn](https://yarnpkg.com/) - Manejador de dependencias locales. 
+
+
+## Autores ✒️
+
+
+* **Diego Bustos** - *Trabajo Inicial* - [Diegoabustos](https://github.com/Diegoabustos/)
