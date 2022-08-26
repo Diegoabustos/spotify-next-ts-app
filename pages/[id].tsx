@@ -8,6 +8,7 @@ import Header from "../components/Header/Header";
 import type { Album } from "../api/types";
 import { basicFetch } from "../api/fetchFunctions";
 import { GetStaticPaths, GetStaticProps } from "next";
+import Breadcrumb from "../components/Breadcrumb/Breadcrumb";
 
 type AlbumProps = {
   album: Album;
@@ -18,6 +19,7 @@ const Album = ({ album }: AlbumProps) => {
   return (
   <main className="relative h-screen w-screen">
     <Header />
+    <Breadcrumb title={name} />
     <AlbumDetail
       albumImageUrl={images[0].url}
       releaseDate={release_date}
