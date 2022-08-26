@@ -3,15 +3,15 @@ export type AlbumImage =  {
 }
 
 export type Token = {
-    access_token: any;
+    access_token: string;
 }
 
 export type Album = {
     id: number;
     name: string;
+    images: [];
     label: string;
     release_date: string;
-    images: any;
     total_tracks: number;
     albumImge: AlbumImage[];
     tracks: Tracks;

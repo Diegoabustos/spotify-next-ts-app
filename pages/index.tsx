@@ -1,19 +1,21 @@
+import { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import Link from "next/link";
-import { ChangeEvent, useEffect, useState } from "react";
-import { Token } from "../api/types";
+// Components
 import Card from "../components/Card/Card";
 import Grid from "../components/Grid/Grid";
 import Header from "../components/Header/Header";
-import SearchInput from "../components/SearchInput/SearchInput";
-import { TOKEN_URL, API_TOKEN } from "../config";
-import { useFetchToken } from "../hooks/useFetchToken";
+// Config
+import { TOKEN_URL, API_TOKEN, API_URL } from "../config";
+import { Album } from "../api/types";
+
+
 
 const Home: NextPage = () => {
 
   const [accesToken, setAccesToken] = useState("");
   const [text, setText] = useState("");
-  const [albums, setAlbums] = useState([]);
+  const [albums, setAlbums] = useState<Album[]>([]);
 
   const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -49,7 +51,7 @@ const Home: NextPage = () => {
       },
     };
     let artistID = await fetch(
-      `https://api.spotify.com/v1/search?q=${text}&type=artist`,
+      `${API_URL}/v1/search?q=${text}&type=artist`,
       searchParameters
     )
       .then((response) => response.json())
@@ -59,7 +61,7 @@ const Home: NextPage = () => {
 
     // Get request with Artist ID grab all the albums from that artist
     let returnAlbums = await fetch(
-      `https://api.spotify.com/v1/artists/${artistID}/albums?include_groups=album&market=US&limi=50`,
+      `${API_URL}/v1/artists/${artistID}/albums?include_groups=album&market=US&limi=50`,
       searchParameters
     )
       .then((response) => response.json())
@@ -92,7 +94,7 @@ const Home: NextPage = () => {
           </div>
         </form>
       </div>
-      <Grid className="p-4 max-w-7xl m-auto" title="Albums">
+      <Grid className="p-4 max-w-7xl m-auto">
         {albums.map((album) => (
           <Link key={album.id} href={`/${album.id}`}>
             <div className="cursor-pointer hover:opacity-80 duration-300">
