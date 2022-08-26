@@ -1,7 +1,7 @@
 export type Album = {
     id: number;
     name: string;
-    images?: AlbumImage[];
+    images: AlbumImage[];
     label: string;
     release_date: string;
     total_tracks: number;
@@ -19,7 +19,7 @@ export type Tracks = {
 }
 
 export type AlbumImage =  {
-    url: string
+    url: string;
 }
 
 export type Token = {

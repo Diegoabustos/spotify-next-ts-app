@@ -95,13 +95,16 @@ const Home: NextPage = () => {
         </form>
       </div>
       <Grid className="p-4 max-w-7xl m-auto">
-        {albums.map((album) => (
-          <Link key={album.id} href={`/${album.id}`}>
-            <div className="cursor-pointer hover:opacity-80 duration-300">
-              <Card imgUrl={album.images[0].url} title={album.name} />
-            </div>
-          </Link>
-        ))}
+        { albums ? 
+        albums.map((album) => {
+          return (
+            <Link key={album.id} href={`/${album.id}`}>
+              <div className="cursor-pointer hover:opacity-80 duration-300">
+                <Card imgUrl={ album.images[0].url } title={album.name} />
+              </div>
+            </Link>
+          );
+        }) : null}
       </Grid>
     </main>
   );
