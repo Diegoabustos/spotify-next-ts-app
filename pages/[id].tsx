@@ -2,6 +2,7 @@
 import AlbumDetail from "../components/AlbumDetail/AlbumDetail";
 import Breadcrumb from "../components/Breadcrumb/Breadcrumb";
 import Header from "../components/Header/Header";
+import Layout from "../components/Layout/Layout";
 // config
 import { API_URL, API_TOKEN, TOKEN_URL } from "../config";
 // Types
@@ -17,17 +18,19 @@ type AlbumProps = {
 const Album = ({ album }: AlbumProps) => {
   const { name, images, label, release_date, total_tracks, tracks } = album;
   return (
-  <main className="relative h-screen w-screen">
-    <Header />
-    <Breadcrumb title={name} />
-    <AlbumDetail
-      albumImageUrl={images[0].url}
-      releaseDate={release_date}
-      label={label}
-      name={name} 
-      totalTracks={total_tracks}
-      albumTracks={tracks.items} />
-  </main>
+    <Layout page="Album detail">
+      <main className="relative h-screen w-screen">
+        <Header />
+        <Breadcrumb title={name} />
+        <AlbumDetail
+          albumImageUrl={images[0].url}
+          releaseDate={release_date}
+          label={label}
+          name={name} 
+          totalTracks={total_tracks}
+          albumTracks={tracks.items} />
+      </main>
+    </Layout>
 );
 }
 
