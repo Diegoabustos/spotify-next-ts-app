@@ -11,15 +11,23 @@ import { GetStaticPaths, GetStaticProps } from "next";
 
 type Props = {
   album: Album;
-  accesToken: string;
 };
 
-const Album = ({ album }: Props) => (
-  <main>
+const Album = ({ album }: Props) => {
+  const { name, images, label, release_date, total_tracks, tracks } = album;
+  return (
+  <main className="relative h-screen w-screen">
     <Header />
-    <AlbumDetail albumTracks={album} />
+    <AlbumDetail
+      albumImageUrl={images[0].url}
+      releaseDate={release_date}
+      label={label}
+      name={name} 
+      totalTracks={total_tracks}
+      albumTracks={tracks.items} />
   </main>
 );
+}
 
 export default Album;
 

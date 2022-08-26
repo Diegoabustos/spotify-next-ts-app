@@ -2,13 +2,19 @@ export type AlbumImage =  {
     url: string
 }
 
+export type Token = {
+    access_token: any;
+}
+
 export type Album = {
     id: number;
     name: string;
     label: string;
     release_date: string;
+    images: any;
     total_tracks: number;
     albumImge: AlbumImage[];
+    tracks: Tracks;
 }
 
 export type Artists = {
@@ -20,4 +26,5 @@ export type Tracks = {
     name: string;
     artists: Artists[];
     release_date: number;
+    duration_ms: any;
 }

@@ -1,20 +1,32 @@
 import Image from "next/image";
 
 type CardProps = {
-  imgUrl?: string;
+  imgUrl: string;
   title: string;
   subtitle?: string;
 };
 
 const Card = ({ imgUrl, title, subtitle }: CardProps) => {
   return (
-    <div className="bg-slate-800 flex flex-col items-center w-48 rounded p-4 relative cursor-pointer">
-      <div className="object-cover rounded">
-        <Image width="82" height="82" src={imgUrl} alt="album-image" />
-      </div>
-      <div className="mt-4 leading-none">
-        <h2 className="text-xl text-white">{title}</h2>
-        <p className="text-sm mt-2 font-medium text-gray-600">{subtitle}</p>
+    <div className="h-80">
+      <div className="relative h-full">
+        <Image
+          className="rounded-lg"
+          layout="fill"
+          objectFit="cover"
+          src={imgUrl}
+          alt="thumb"
+        />
+        <div className="absolute w-full bottom-0 px-4 py-2 rounded-b-xl bg-zinc-800">
+          <h2 className="text-cyan-200 text-center text-sm truncate">
+            {title}
+          </h2>
+          {subtitle ? (
+            <p className="text-cyan-400 text-center text-xs truncate">
+              {subtitle}
+            </p>
+          ) : null}
+        </div>
       </div>
     </div>
   );
