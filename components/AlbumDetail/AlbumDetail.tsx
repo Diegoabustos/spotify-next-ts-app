@@ -1,23 +1,20 @@
 import Image from "next/image";
+import { Tracks } from "../../api/types";
 import { calcTime } from "../../helpers";
-
-
-
 
 
 type AlbumDetailProps = {
     name: string;
     label: string
-    albumTracks: any;
+    albumTracks: Tracks[];
     releaseDate: string;
     totalTracks: number;
-    albumImageUrl: any;
+    albumImageUrl: string;
 }
 
 const AlbumDetail = ({ albumTracks, albumImageUrl, name, label, releaseDate, totalTracks }: AlbumDetailProps) => {
-    console.log(albumTracks)
     return (
-    <div className='bg-black'>
+    <div className='bg-black h-full'>
         <div className="flex">
             <div className='mx-6 my-6'>
                 <Image width="200" height="200" alt="album" src={albumImageUrl} />
@@ -35,7 +32,7 @@ const AlbumDetail = ({ albumTracks, albumImageUrl, name, label, releaseDate, tot
             <div className='w-full p-2 '>Duration</div>
         </div>
         {
-            albumTracks.map(tracks => (
+            albumTracks.map((tracks: Tracks) => (
                 <div key={tracks.id} className="flex text-white border border-b border-gray-800 hover:bg-gray-800">
                     <div className='w-full p-2 ml-6'>{tracks.name}</div>
                     <div className='w-full p-2 '>{tracks.artists[0].name}</div>

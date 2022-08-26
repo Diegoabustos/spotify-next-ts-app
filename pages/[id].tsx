@@ -9,11 +9,11 @@ import type { Album } from "../api/types";
 import { basicFetch } from "../api/fetchFunctions";
 import { GetStaticPaths, GetStaticProps } from "next";
 
-type Props = {
+type AlbumProps = {
   album: Album;
 };
 
-const Album = ({ album }: Props) => {
+const Album = ({ album }: AlbumProps) => {
   const { name, images, label, release_date, total_tracks, tracks } = album;
   return (
   <main className="relative h-screen w-screen">
